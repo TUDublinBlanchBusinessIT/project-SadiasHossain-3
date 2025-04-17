@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home route — optional
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/jobs');
 });
+
+// Full resource routes for Job CRUD
+Route::resource('jobs', JobController::class);
