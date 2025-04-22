@@ -1,14 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h2>Login</h2>
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <input name="email" type="email" placeholder="Email"><br>
-            <input name="password" type="password" placeholder="Password"><br>
-            <button type="submit">Login</button>
-        </form>
-        <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
+    <h2 class="text-center mb-4">Login</h2>
+
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
+
+        <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
+        </div>
+
+        <div class="mb-4">
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <div class="text-center mt-3">
+        Don't have an account? <a href="{{ route('register') }}">Register here</a>
     </div>
 @endsection
