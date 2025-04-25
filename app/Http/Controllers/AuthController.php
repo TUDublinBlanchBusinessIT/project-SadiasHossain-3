@@ -15,17 +15,26 @@ class AuthController extends Controller
 
     public function authenticate(Request $request) {
         $credentials = $request->only('email', 'password');
-
+    
+        // Check if the email exists first
+        if (!\App\Models\User::where('email', $request->email)->exists()) {
+            return back()->withErrors([
+                'email' => 'No account found for this email. Please register first.',
+            ]);
+        }
+    
+        // If email exists, try to log in
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/jobs');
-
         }
-
+    
+        // Email exists but password was wrong
         return back()->withErrors([
-            'email' => 'Invalid credentials.',
+            'email' => 'Incorrect password. Please try again.',
         ]);
     }
+    
 
     public function register() {
         return view('auth.register');
