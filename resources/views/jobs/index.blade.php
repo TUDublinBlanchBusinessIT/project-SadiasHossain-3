@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Job Tracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container mt-5">
-    <h1 class="mb-4">My Job Applications</h1>
+@extends('layouts.app')
+
+@section('content')
+    <h1 class="mb-4 text-center fw-bold display-6">My Job Applications</h1>
+
 
     <a href="{{ route('jobs.create') }}" class="btn btn-success mb-3">Add New Job</a>
 
@@ -44,6 +40,4 @@
         @endforeach
         </tbody>
     </table>
-</div>
-</body>
-</html>
+@endsection

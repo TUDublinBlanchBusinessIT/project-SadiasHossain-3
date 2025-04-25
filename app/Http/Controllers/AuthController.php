@@ -18,7 +18,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/jobs');
+
         }
 
         return back()->withErrors([
@@ -36,16 +37,16 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string|confirmed',
         ]);
-
-        $user = User::create([
+    
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
-        Auth::login($user);
-
-        return redirect('/dashboard');
+    
+        // Redirect to login page with success message
+        return redirect()->route('login')->with('success', 'Account created! Please log in.');
     }
+    
+    
 }
-

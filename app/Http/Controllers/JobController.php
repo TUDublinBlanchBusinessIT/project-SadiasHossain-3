@@ -4,30 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; 
+
 
 class JobController extends Controller
 {
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = \App\Models\Job::where('user_id', Auth::id())->get();
+
         return view('jobs.index', compact('jobs'));
     }
+
 
     public function create()
     {
         return view('jobs.create');
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
             'job_title' => 'required',
             'company_name' => 'required',
+            'location' => 'nullable',
+            'date_applied' => 'nullable|date',
+            'status' => 'nullable',
+            'source_link' => 'nullable|url',
         ]);
 
-        Job::create($request->all());
+        $request->merge(['user_id' => Auth::id()]);
+
+        \App\Models\Job::create($request->all());
+
         return redirect()->route('jobs.index')->with('success', 'Job added successfully.');
     }
+
 
     public function show(Job $job)
     {

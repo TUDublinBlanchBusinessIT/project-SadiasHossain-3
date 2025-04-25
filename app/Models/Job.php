@@ -16,5 +16,11 @@ class Job extends Model
         'date_applied',
         'status',
         'source_link',
+        'user_id',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
