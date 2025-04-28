@@ -45,3 +45,21 @@ Route::middleware(['auth'])->group(function () {
     ]);
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::resource('notes', App\Http\Controllers\NoteController::class)->names([
+        'index' => 'notes.index',
+        'create' => 'notes.create',
+        'store' => 'notes.store',
+        'edit' => 'notes.edit',
+        'update' => 'notes.update',
+        'show' => 'notes.show',
+        'destroy' => 'notes.destroy',
+    ]);
+});
+
+// Notes routes (protected)
+Route::middleware(['auth'])->group(function () {
+    Route::resource('notes', \App\Http\Controllers\NoteController::class);
+});
+
+

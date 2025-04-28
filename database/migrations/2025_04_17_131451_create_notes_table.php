@@ -6,28 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateNotesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('job_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('job_id');
+            $table->unsignedBigInteger('user_id'); 
             $table->text('note_content');
             $table->date('note_date')->nullable();
             $table->timestamps();
+
+            // Foreign key constraints
+            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('notes');

@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'content',
+    ];
+
+    // Link the note to the user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
