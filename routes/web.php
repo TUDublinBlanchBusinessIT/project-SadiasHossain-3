@@ -11,11 +11,13 @@ Route::get('/', function () {
 });
 
 // Authentication routes
+// Registration Routes
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'store']);  // POST for storing the new user
+
+// Login Routes
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
-
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'store']);
 
 // Logout - POST (secure method)
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -61,5 +63,3 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('notes', \App\Http\Controllers\NoteController::class);
 });
-
-

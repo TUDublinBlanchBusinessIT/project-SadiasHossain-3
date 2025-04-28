@@ -21,27 +21,26 @@ class NoteController extends Controller
         return view('notes.create');
     }
 
-    // Store a new note in database
+    // Store a new note in the database
     public function store(Request $request)
     {
+        // Validate the incoming data
         $request->validate([
             'title' => 'required|string',
-            'note_content' => 'required|string',
+            'note_content' => 'required|string', 
             'note_date' => 'nullable|date',
-            'job_id' => 'required|exists:jobs,id',
         ]);
 
+        // Create and store the note
         Note::create([
-            'user_id' => Auth::id(),
-            'job_id' => $request->job_id, 
+            'user_id' => Auth::id(), 
             'title' => $request->title,
-            'note_content' => $request->note_content,
+            'note_content' => $request->note_content, 
             'note_date' => $request->note_date,
         ]);
 
-        return redirect()->route('jobs.index')->with('success', 'Note created successfully.');
+        return redirect()->route('notes.index')->with('success', 'Note created successfully.');
     }
-
 
     // Show form to edit a note
     public function edit(Note $note)
@@ -62,7 +61,7 @@ class NoteController extends Controller
 
         $request->validate([
             'title' => 'required|string',
-            'content' => 'required|string',
+            'note_content' => 'required|string',
         ]);
 
         $note->update($request->all());

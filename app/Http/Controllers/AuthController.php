@@ -40,22 +40,32 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
+    // Validate the incoming data
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|confirmed',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
-    
-        User::create([
+
+    // Create a new user
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => bcrypt($request->password),
         ]);
+
+    // Debugging line: Check if this code is being hit
+        ('Redirecting to login page');
     
-        // Redirect to login page with success message
-        return redirect()->route('login')->with('success', 'Account created! Please log in.');
+    // Redirect to the login page after successful registration
+        return redirect()->to('/login')->with('success', 'Registration successful! Please log in.');
     }
+
+
+
+
     
     
 }

@@ -10,14 +10,12 @@ class CreateNotesTable extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_id');
-            $table->unsignedBigInteger('user_id'); 
+            $table->unsignedBigInteger('user_id');  // Keep user_id, as it's important for linking to the user
             $table->text('note_content');
             $table->date('note_date')->nullable();
             $table->timestamps();
 
-            // Foreign key constraints
-            $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
+            // Foreign key constraint for user_id
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

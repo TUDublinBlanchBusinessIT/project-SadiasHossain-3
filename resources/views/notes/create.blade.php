@@ -17,9 +17,6 @@
     <form action="{{ route('notes.store') }}" method="POST">
         @csrf
 
-        <!-- Hidden Job ID -->
-        <input type="hidden" name="job_id" value="{{ request('job_id') }}">
-
         <!-- Title Field (required for validation and database) -->
         <div class="mb-3">
             <label for="title" class="form-label">Note Title</label>
@@ -31,6 +28,7 @@
             <label for="note_content" class="form-label">Note Content</label>
             <textarea name="note_content" id="note_content" class="form-control" rows="4" required>{{ old('note_content') }}</textarea>
         </div>
+
 
         <!-- Date Field -->
         <div class="mb-3">
