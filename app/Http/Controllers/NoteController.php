@@ -26,18 +26,25 @@ class NoteController extends Controller
     {
         // Validate the incoming data
         $request->validate([
-            'title' => 'required|string',
-            'note_content' => 'required|string', 
-            'note_date' => 'nullable|date',
+            'note_content' => 'required|string', // Ensure note_content is required
         ]);
 
-        // Create and store the note
-        Note::create([
-            'user_id' => Auth::id(), 
-            'title' => $request->title,
-            'note_content' => $request->note_content, 
-            'note_date' => $request->note_date,
+        // Log the request data to check if it's being passed correctly
+        \Log::info('Request Data for note_content:', $request->all());
+
+        // Create a new Note object and fill it
+        $note = new Note;
+        $note->fill([
+            'user_id' => Auth::id(),
+            'note_content' => $request->note_content,
+            'note_date' => $request->note_date, // Optional note date
         ]);
+
+        // Save the note to the database
+        $note->save();
+
+        // Log the note data as an array (fixed error)
+        \Log::info('Note Created:', $note->toArray());
 
         return redirect()->route('notes.index')->with('success', 'Note created successfully.');
     }

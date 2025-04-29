@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">My Notes</h1>
+    <h1 class="mb-4 text-center fw-bold display-6">My Notes</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -20,7 +20,6 @@
                 <tr>
                     <th>Note Content</th>
                     <th>Note Date</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>

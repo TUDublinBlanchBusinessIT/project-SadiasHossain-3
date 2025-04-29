@@ -24,6 +24,7 @@
     </form>
 
     <div class="text-center mt-3">
-        Don't have an account? <a href="{{ route('register') }}">Register here</a>
+    Don't have an account? <a href="{{ route('register') }}" class="register-link">Register here</a>
     </div>
+
 @endsection
