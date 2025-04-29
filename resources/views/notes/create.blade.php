@@ -21,30 +21,22 @@
     @endif
 
     <form action="{{ route('notes.store') }}" method="POST">
-    @csrf
+        @csrf
 
-    <!-- Title Field (optional) -->
-    <div class="mb-3">
-        <label for="title" class="form-label">Note Title</label>
-        <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
-    </div>
+        <!-- Note Content (required) -->
+        <div class="mb-3">
+            <label for="note_content" class="form-label">Note Content</label>
+            <textarea name="note_content" id="note_content" class="form-control" rows="4" required>{{ old('note_content') }}</textarea>
+        </div>
 
-    <!-- Content Field (required) -->
-    <div class="mb-3">
-        <label for="note_content" class="form-label">Note Content</label>
-        <textarea name="note_content" id="note_content" class="form-control" rows="4" required>{{ old('note_content') }}</textarea>
-    </div>
+        <!-- Note Date (optional) -->
+        <div class="mb-3">
+            <label for="note_date" class="form-label">Note Date (optional)</label>
+            <input type="date" name="note_date" id="note_date" class="form-control" value="{{ old('note_date') }}">
+        </div>
 
-    <!-- Date Field (optional) -->
-    <div class="mb-3">
-        <label for="note_date" class="form-label">Note Date (optional)</label>
-        <input type="date" name="note_date" id="note_date" class="form-control" value="{{ old('note_date') }}">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Note</button>
-    <a href="{{ route('jobs.index') }}" class="btn btn-secondary">Back to Jobs</a>
-</form>
-
-
+        <button type="submit" class="btn btn-primary">Save Note</button>
+        <a href="{{ route('jobs.index') }}" class="btn btn-secondary">Back to Jobs</a>
+    </form>
 </div>
 @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Home
@@ -61,5 +62,6 @@ Route::middleware(['auth'])->group(function () {
 
 // Notes routes (protected)
 Route::middleware(['auth'])->group(function () {
-    Route::resource('notes', \App\Http\Controllers\NoteController::class);
+    Route::resource('notes', NoteController::class)->middleware('auth');
+
 });

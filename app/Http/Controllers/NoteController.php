@@ -24,30 +24,22 @@ class NoteController extends Controller
     // Store a new note in the database
     public function store(Request $request)
     {
-        // Validate the incoming data
-        $request->validate([
+    // Validate the incoming data
+        $validated = $request->validate([
             'note_content' => 'required|string', // Ensure note_content is required
         ]);
 
-        // Log the request data to check if it's being passed correctly
-        \Log::info('Request Data for note_content:', $request->all());
+    // Create a new note for the logged-in user
+        $note = new Note();
+        $note->user_id = Auth::id(); // Set the logged-in user ID
+        $note->note_content = $request->note_content;
+        $note->note_date = $request->note_date; // Optional date field
+        $note->save(); // Save the note to the database
 
-        // Create a new Note object and fill it
-        $note = new Note;
-        $note->fill([
-            'user_id' => Auth::id(),
-            'note_content' => $request->note_content,
-            'note_date' => $request->note_date, // Optional note date
-        ]);
-
-        // Save the note to the database
-        $note->save();
-
-        // Log the note data as an array (fixed error)
-        \Log::info('Note Created:', $note->toArray());
-
+    // Redirect back to notes index with a success message
         return redirect()->route('notes.index')->with('success', 'Note created successfully.');
     }
+
 
     // Show form to edit a note
     public function edit(Note $note)

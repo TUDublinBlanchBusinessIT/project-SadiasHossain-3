@@ -26,16 +26,21 @@
                 <td>{{ $job->company_name }}</td>
                 <td>{{ $job->status }}</td>
                 <td>{{ $job->date_applied }}</td>
-                <td class="d-flex flex-column gap-1">
-                    <a href="{{ route('jobs.show', $job->id) }}" class="btn btn-info btn-sm">View</a>
-                    <a href="{{ route('jobs.edit', $job->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                    <form action="{{ route('jobs.destroy', $job->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
-                    <!-- Add Note Button -->
-                    <a href="{{ route('notes.create', ['job_id' => $job->id]) }}" class="btn btn-success btn-sm">Add Note</a>
+                <td>
+                    <!-- Wrap the buttons in a container for flexbox -->
+                    <div class="action-buttons">
+                        <a href="{{ route('jobs.show', $job->id) }}" class="btn btn-info btn-sm">View</a>
+                        <a href="{{ route('jobs.edit', $job->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <form action="{{ route('jobs.destroy', $job->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                        <a href="{{ route('notes.create', ['job_id' => $job->id]) }}" class="btn btn-success btn-sm">Add Note</a>
+                    </div>
+
+
+                        
                 </td>
             </tr>
         @endforeach
