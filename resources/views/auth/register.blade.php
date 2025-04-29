@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex justify-content-center">
     <div class="card shadow-sm p-4" style="width: 100%; max-width: 450px;">
-        <h4 class="text-center mb-4">Register</h4>
+        <h2 class="text-center mb-4">Register</h2>
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
