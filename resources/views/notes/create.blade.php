@@ -26,7 +26,7 @@
         <!-- Note Content (required) -->
         <div class="mb-3">
             <label for="note_content" class="form-label">Note Content</label>
-            <textarea name="note_content" id="note_content" class="form-control" rows="4" required>{{ old('note_content') }}</textarea>
+            <textarea name="note_content" id="note_content" class="form-control" rows="6" required>{{ old('note_content') }}</textarea>
         </div>
 
         <!-- Note Date (optional) -->

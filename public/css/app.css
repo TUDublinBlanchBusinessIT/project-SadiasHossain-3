@@ -1,92 +1,46 @@
-/* Table Styles */
-.table {
-  width: 100%; /* Table takes up 100% width */
-  max-width: 1000px; /* Adjust as needed */
-  margin: 0 auto; /* Centers the table */
-  border-collapse: collapse;
-  background-color: white; /* Optional: improves readability */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: adds depth */
+/* Enhance the form layout */
+.container {
+  max-width: 800px; /* Limit the width of the form */
+  margin: 0 auto;   /* Center the form on the page */
 }
 
-.table tbody tr:hover {
-  background-color: #f1f1f1;
-  cursor: pointer;
+/* Increase the size of the textarea */
+textarea.form-control {
+  font-size: 16px;  /* Bigger font size for better readability */
+  padding: 50px;    /* Padding for more space inside the textarea */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ddd; /* Subtle border */
 }
 
-.table th, .table td {
-  padding: 15px;
-  text-align: left;
+/* Ensure the input fields have consistent size */
+input.form-control, .btn {
+  border-radius: 8px; /* Rounded corners */
+  padding: 12px 15px;  /* Padding for a more comfortable input area */
+  font-size: 16px;     /* Larger font for better readability */
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+/* Button Styling */
+.btn-primary {
+  background-color: #007bff; /* Primary color */
+  border-color: #007bff;
 }
 
-/* Action Button Styles */
-.btn-view {
-  background-color: #007bff;
-  color: white;
-}
-
-.btn-view:hover {
+.btn-primary:hover {
   background-color: #0056b3;
+  border-color: #0056b3;
 }
 
-.btn-edit {
-  background-color: #28a745;
-  color: white;
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
 }
 
-.btn-edit:hover {
-  background-color: #218838;
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #5a6268;
 }
 
-/* Delete button styles */
-.btn-danger {
-  background-color: #dc3545;  /* Red background */
-  color: white;
+/* Add some space between form fields */
+.mb-3 {
+  margin-bottom: 20px;
 }
-
-.btn-danger:hover {
-  background-color: #c82333;  /* Darker red on hover */
-}
-
-/* Add Note button styles */
-.btn-add-note {
-  background-color: #405d62;
-  color: rgb(18, 17, 17);
-}
-
-.btn-add-note:hover {
-  background-color: #405d62;
-}
-
-/* Table Borders */
-.table, .table th, .table td {
-  border: 5px solid #fbfafa;
-  border-radius: 10px;
-}
-
-/* Action Buttons Layout (2 per row) */
-/* Action Buttons Layout (2 per row) */
-.action-buttons {
-  display: flex;
-  flex-wrap: wrap;      /* Allow buttons to wrap onto the next line */
-  gap: 10px;            /* Space between buttons */
-}
-
-.action-buttons .btn {
-  width: calc(50% - 5px); /* Make each button take up 50% of the row minus some gap space */
-  margin-bottom: 10px;    /* Space between rows */
-  padding: 10px 20px;     /* Ensure consistent button padding */
-  font-size: 14px;        /* Consistent font size */
-  height: 45px;           /* Make the height consistent */
-}
-
-/* Ensure Delete button has the same size */
-.action-buttons .btn-danger {
-  width: calc(50% - 5px); /* Make sure the Delete button matches the width of others */
-  padding: 10px 20px;     /* Consistent padding with other buttons */
-  height: 45px;           /* Ensure consistent height with other buttons */
-}
-
